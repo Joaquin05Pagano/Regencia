@@ -1,9 +1,9 @@
 --------------------------------Tabla Alumnos--------------------------------
 
---obetener alumnos
+-- obtener_alumno_dni
 delimiter //
 
-create function ObtenerDniAlumno(nombre_alumno varchar(100))
+create function obtener_alumno_dni(nombre_alumno varchar(100))
 returns bigint
 begin
     declare dni bigint;
@@ -13,12 +13,10 @@ end//
 
 delimiter ;
 
-
---Obtenernombrealumno
-
+-- obtener_nombre_alumno
 delimiter //
 
-create function ObtenerNombreAlumno(dni_alumno bigint)
+create function obtener_nombre_alumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare nombre varchar(100);
@@ -28,10 +26,10 @@ end//
 
 delimiter ;
 
---Obtenerfechanacimientoalumno
+-- obtener_fecha_nacimiento_alumno
 delimiter //
 
-create function ObtenerFechaNacimientoAlumno(dni_alumno bigint)
+create function obtener_fecha_nacimiento_alumno(dni_alumno bigint)
 returns date
 begin
     declare fecha_nacimiento date;
@@ -41,12 +39,10 @@ end//
 
 delimiter ;
 
-
---Obtenerdireccionalumno
-
+-- obtener_direccion_alumno
 delimiter //
 
-create function ObtenerDireccionAlumno(dni_alumno bigint)
+create function obtener_direccion_alumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare direccion varchar(100);
@@ -56,12 +52,10 @@ end//
 
 delimiter ;
 
-
---Obtenerlocalidadalumno
-
+-- obtener_localidad_alumno
 delimiter //
 
-create function ObtenerLocalidadAlumno(dni_alumno bigint)
+create function obtener_localidad_alumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare localidad varchar(100);
@@ -71,11 +65,10 @@ end//
 
 delimiter ;
 
---Obtenercodigopostalatualumno
-
+-- obtener_codigo_postal_alumno
 delimiter //
 
-create function ObtenerCodigoPostalAlumno(dni_alumno bigint)
+create function obtener_codigo_postal_alumno(dni_alumno bigint)
 returns int
 begin
     declare cod_postal int;
@@ -85,11 +78,10 @@ end//
 
 delimiter ;
 
---Obtenertelefonoalumno
-
+-- obtener_telefono_alumno
 delimiter //
 
-create function ObtenerTelefonoAlumno(dni_alumno bigint)
+create function obtener_telefono_alumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare telefono varchar(100);
@@ -99,12 +91,10 @@ end//
 
 delimiter ;
 
-
---Obtenergmailalumno
-
+-- obtener_gmail_alumno
 delimiter //
 
-create function ObtenerGmailAlumno(dni_alumno bigint)
+create function obtener_gmail_alumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare gmail varchar(100);
@@ -115,12 +105,11 @@ end//
 delimiter ;
 
 
---------------------------------Tabla Padres Alumnos--------------------------------
---dni_Alumno_hijo
-
+--------------------------------Tabla tutores--------------------------------
+-- obtener_dni_alumno_hijo
 delimiter //
 
-create function ObtenerDniAlumnoHijo(dni_tutor bigint)
+create function obtener_dni_alumno_hijo(dni_tutor bigint)
 returns bigint
 begin
     declare dni_hijo bigint;
@@ -130,10 +119,10 @@ end//
 
 delimiter ;
 
---nombre_Alumnos_hijo 
+-- obtener_nombre_alumno_hijo 
 delimiter //
 
-create function ObtenerNombreAlumnoHijo(dni_tutor bigint)
+create function obtener_nombre_alumno_hijo(dni_tutor bigint)
 returns varchar(100)
 begin
     declare nombre_alumno_hijo varchar(100);
@@ -143,12 +132,10 @@ end//
 
 delimiter ;
 
-
---dni_padre 
-
+-- obtener_dni_tutor 
 delimiter //
 
-create function ObtenerDniPadre(dni_alumno_hijo bigint)
+create function obtener_dni_tutor(dni_alumno_hijo bigint)
 returns bigint
 begin
     declare dni_tutor bigint;
@@ -158,11 +145,10 @@ end//
 
 delimiter ;
 
-
---nombre_Padre 
+-- obtener_nombre_tutor
 delimiter //
 
-create function ObtenerNombrePadre(dni_alumno_hijo bigint)
+create function obtener_nombre_tutor(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare nombre_tutor varchar(100);
@@ -172,74 +158,66 @@ end//
 
 delimiter ;
 
-
-
---fecha_naci_Padre 
+-- obtener_fecha_nacimiento_tutor
 delimiter //
 
-create function ObtenerFechaNacimientoPadre(dni_alumno_hijo bigint)
+create function obtener_fecha_nacimiento_tutor(dni_alumno_hijo bigint)
 returns date
 begin
     declare fecha_nacimiento date;
-    select fecha_naci_padre into fecha_nacimiento from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    select fecha_naci_tutor into fecha_nacimiento from tutores where dni_alumno_hijo = dni_alumno_hijo;
     return fecha_nacimiento;
 end//
 
 delimiter ;
 
-
---direccion_madre_padre
-
+-- obtener_direccion_tutor
 delimiter //
 
-create function ObtenerDireccionMadrePadre(dni_alumno_hijo bigint)
+create function obtener_direccion_tutor(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare direccion varchar(100);
-    select direccion_madre_Padre into direccion from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    select direccion_tutor into direccion from tutores where dni_alumno_hijo = dni_alumno_hijo;
     return direccion;
 end//
 
 delimiter ;
 
-
-
---localidad_madre_Padre
+-- obtener_localidad_tutor
 delimiter //
 
-create function ObtenerLocalidadMadrePadre(dni_alumno_hijo bigint)
+create function obtener_localidad_tutor(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare localidad varchar(100);
-    select localidad_madre_padre into localidad from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    select localidad_tutor into localidad from tutores where dni_alumno_hijo = dni_alumno_hijo;
     return localidad;
 end//
 
 delimiter ;
 
-
---tel_padre
-
+-- obtener_telefono_tutor
 delimiter //
 
-create function ObtenerTelefonoPadre(dni_alumno_hijo bigint)
+create function obtener_telefono_tutor(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare telefono varchar(100);
-    select tel_padre into telefono from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    select tel_tutor into telefono from tutores where dni_alumno_hijo = dni_alumno_hijo;
     return telefono;
 end//
 
 delimiter ;
 
 
+
 --------------------------------Tabla Inasistencias--------------------------------
 
---dni_alumnos_inasistencias
-
+-- obtener_dni_alumno_por_inasistencia
 delimiter //
 
-create function ObtenerDniAlumnoPorInasistencia(codigo_inasistencia bigint)
+create function obtener_dni_alumno_por_inasistencia(codigo_inasistencia bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
@@ -249,12 +227,10 @@ end//
 
 delimiter ;
 
-
---nombre_alumno_inasistencias
-
+-- obtener_nombre_alumno_por_inasistencia
 delimiter //
 
-create function ObtenerNombreAlumnoPorInasistencia(codigo_inasistencia bigint)
+create function obtener_nombre_alumno_por_inasistencia(codigo_inasistencia bigint)
 returns varchar(100)
 begin
     declare nombre_alumno varchar(100);
@@ -264,11 +240,10 @@ end//
 
 delimiter ;
 
---cantidad_inasistencias
-
+-- obtener_cantidad_inasistencias
 delimiter //
 
-create function ObtenerCantidadInasistencias(dni_alumno bigint)
+create function obtener_cantidad_inasistencias(dni_alumno bigint)
 returns bigint
 begin
     declare cantidad_inasistencias bigint;
@@ -279,71 +254,70 @@ end//
 delimiter ;
 
 
+
 --------------------------------Tabla Curso--------------------------------
 
 
---dni_alumno_curso
+-- obtener_dni_alumno_por_curso
 delimiter //
 
-create function ObtenerDniAlumnoPorCurso(aula_curso bigint, anio_curso bigint, division_curso bigint)
+create function obtener_dni_alumno_por_curso(aula_curso bigint, anio_curso bigint, division_curso bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
-    select dni_alumno_curso into dni_alumno from cursos where aula_curso = aula_curso and anio_curso = anio_curso and division_curso = division_curso;
+    select dni_alumno_curso into dni_alumno from curso where aula_curso = aula_curso and anio_curso = anio_curso and division_curso = division_curso;
     return dni_alumno;
 end//
 
 delimiter ;
 
---aula_curso
+-- obtener_aula_por_alumno_curso
 delimiter //
 
-create function ObtenerAulaPorCursoAlumno(dni_alumno bigint)
+create function obtener_aula_por_alumno_curso(dni_alumno bigint)
 returns bigint
 begin
     declare aula bigint;
-    select aula_curso into aula from cursos where dni_alumno_curso = dni_alumno;
+    select aula_curso into aula from curso where dni_alumno_curso = dni_alumno;
     return aula;
 end//
 
 delimiter ;
 
---anio_curso
+-- obtener_anio_por_alumno_curso
 delimiter //
 
-create function ObtenerAnioPorAlumnoCurso(dni_alumno bigint)
+create function obtener_anio_por_alumno_curso(dni_alumno bigint)
 returns bigint
 begin
     declare anio bigint;
-    select anio_curso into anio from cursos where dni_alumno_curso = dni_alumno;
+    select anio_curso into anio from curso where dni_alumno_curso = dni_alumno;
     return anio;
 end//
 
 delimiter ;
 
-
---division_curso
+-- obtener_division_por_alumno_curso
 delimiter //
 
-create function ObtenerDivisionPorCursoAlumno(dni_alumno bigint)
+create function obtener_division_por_alumno_curso(dni_alumno bigint)
 returns bigint
 begin
     declare division bigint;
-    select division_curso into division from cursos where dni_alumno_curso = dni_alumno;
+    select division_curso into division from curso where dni_alumno_curso = dni_alumno;
     return division;
 end//
 
 delimiter ;
 
-
---preceptor_curso 
+-- obtener_preceptor_por_alumno_curso
 delimiter //
 
-create function ObtenerPreceptorPorCursoAlumno(dni_alumno bigint)
+create function obtener_preceptor_por_alumno_curso(dni_alumno bigint)
 returns varchar(100)
 begin
     declare nombre_preceptor varchar(100);
-    select preceptor_curso into nombre_preceptor from cursos where dni_alumno_curso = dni_alumno;
+    select preceptor_curso into nombre_preceptor from curso where dni_alumno_curso = dni_alumno;
     return nombre_preceptor;
 end//
 
@@ -352,11 +326,12 @@ delimiter ;
 
 --------------------------------Tabla Faltas--------------------------------
 
---codigo_falta 
+-- codigo_falta
+drop function if exists obtener_codigo_falta;
 
 delimiter //
 
-create function ObtenerCodigoFalta(dni_alumno bigint)
+create function obtener_codigo_falta(dni_alumno bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
@@ -366,12 +341,10 @@ end//
 
 delimiter ;
 
-
---dni_alumno_falta 
-
+-- dni_alumno_falta
 delimiter //
 
-create function ObtenerDniAlumnoPorFalta(codigo_falta bigint)
+create function obtener_dni_alumno_por_falta(codigo_falta bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
@@ -381,12 +354,10 @@ end//
 
 delimiter ;
 
-
---alumno_falta 
-
+-- alumno_falta
 delimiter //
 
-create function ObtenerNombreAlumnoPorFalta(codigo_falta bigint)
+create function obtener_nombre_alumno_por_falta(codigo_falta bigint)
 returns varchar(100)
 begin
     declare nombre_alumno varchar(100);
@@ -396,11 +367,10 @@ end//
 
 delimiter ;
 
-
---fecha_falta  
+-- fecha_falta
 delimiter //
 
-create function ObtenerFechaFalta(codigo_falta bigint)
+create function obtener_fecha_falta(codigo_falta bigint)
 returns date
 begin
     declare fecha_falta date;
@@ -410,11 +380,10 @@ end//
 
 delimiter ;
 
---motivo_falta 
-
+-- motivo_falta
 delimiter //
 
-create function ObtenerMotivoFalta(codigo_falta bigint)
+create function obtener_motivo_falta(codigo_falta bigint)
 returns varchar(100)
 begin
     declare motivo varchar(100);
@@ -424,12 +393,10 @@ end//
 
 delimiter ;
 
-
---descripcion_falta
-
+-- descripcion_falta
 delimiter //
 
-create function ObtenerDescripcionFalta(codigo_falta bigint)
+create function obtener_descripcion_falta(codigo_falta bigint)
 returns text
 begin
     declare descripcion text;
@@ -440,13 +407,13 @@ end//
 delimiter ;
 
 
+
 --------------------------------Tabla solicitud_sancion--------------------------------
 
---codigo_falta_solicitud
-
+-- codigo_falta_solicitud
 delimiter //
 
-create function ObtenerCodigoFaltaPorSolicitud(codigo_solicitud bigint)
+create function obtener_codigo_falta_por_solicitud(codigo_solicitud bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
@@ -456,13 +423,10 @@ end//
 
 delimiter ;
 
-
-
---nomdocente_solicitud
-
+-- nomdocente_solicitud
 delimiter //
 
-create function ObtenerNomDocentePorSolicitud(codigo_solicitud bigint)
+create function obtener_nom_docente_por_solicitud(codigo_solicitud bigint)
 returns varchar(100)
 begin
     declare nombre_docente varchar(100);
@@ -472,13 +436,10 @@ end//
 
 delimiter ;
 
-
-
---cargo_solicitud 
-
+-- cargo_solicitud
 delimiter //
 
-create function ObtenerCargodocentePorSolicitud(codigo_solicitud bigint)
+create function obtener_cargo_docente_por_solicitud(codigo_solicitud bigint)
 returns varchar(100)
 begin
     declare cargo_docente varchar(100);
@@ -488,12 +449,10 @@ end//
 
 delimiter ;
 
-
---fecha_solicitud  
-
+-- fecha_solicitud
 delimiter //
 
-create function ObtenerFechaSolicitud(codigo_solicitud bigint)
+create function obtener_fecha_solicitud(codigo_solicitud bigint)
 returns date
 begin
     declare fecha_solicitud date;
@@ -506,11 +465,11 @@ delimiter ;
 
 --------------------------------Tabla observaciones--------------------------------
 
---codigo_falta_observaciones
+-- codigo_falta_observaciones
 
 delimiter //
 
-create function ObtenerCodigoFaltaPorObservaciones(codigo_observaciones bigint)
+create function obtener_codigo_falta_por_observaciones(codigo_observaciones bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
@@ -520,13 +479,11 @@ end//
 
 delimiter ;
 
-
-
---observacion_observaciones
+-- observacion_observaciones
 
 delimiter //
 
-create function ObtenerObservacionporcodigo(codigo_observaciones bigint)
+create function obtener_observacion_por_codigo(codigo_observaciones bigint)
 returns text
 begin
     declare observacion text;
@@ -536,129 +493,116 @@ end//
 
 delimiter ;
 
+-- codigo_falta_grado
 
-
-
---codigo_falta_grado
 delimiter //
 
-create function ObtenerCodigoFaltaPorgado(codigo_grado bigint)
+create function obtener_codigo_falta_por_grado(codigo_grado bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
     select codigo_falta_grado into codigo_falta from grados where codigo_falta_grado = codigo_grado;
     return codigo_falta;
-end //
+end//
 
 delimiter ;
 
-select Obtenercodigo_faltaporgado(codigo_grado);
-
-
-
---instancia_grado
+-- instancia_grado
 
 delimiter //
 
-create function Obtenerinstanciagrado(codigo_grado bigint)
+create function obtener_instancia_grado(codigo_grado bigint)
 returns varchar(100)
 begin
     declare instancia_grado varchar(100);
     select instancia_grado into instancia_grado from grados where codigo_falta_grado = codigo_grado;
     return instancia_grado;
-end //
+end//
 
 delimiter ;
 
-
-
-
---consideracion_alternativa_grado
+-- consideracion_alternativa_grado
 
 delimiter //
 
-create function Obtenerconsideracionalternativagrado(codigo_grado bigint)
+create function obtener_consideracion_alternativa_grado(codigo_grado bigint)
 returns varchar(100)
 begin
     declare consideracion_alternativa varchar(100);
     select consideracion_alternativa_grado into consideracion_alternativa from grados where codigo_falta_grado = codigo_grado;
     return consideracion_alternativa;
-end //
+end//
 
 delimiter ;
-
 
 --------------------------------tabla notificaion_tutores--------------------------------
 
---codigo_falta_notificacion
+-- codigo_falta_notificacion
 
 delimiter //
 
-create function Obtenercodigofaltapornotificacion(codigo_notificacion bigint)
+create function obtener_codigo_falta_por_notificacion(codigo_notificacion bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
-    select codigo_falta_notificacion into codigo_falta from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    select codigo_falta_notificacion into codigo_falta from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
     return codigo_falta;
-end //
+end//
 
 delimiter ;
 
-
-
---fecha_notificacion_a
+-- fecha_notificacion_a
 
 delimiter //
 
-create function Obtenerfechanotificacionporcodigo(codigo_notificacion bigint)
+create function obtener_fecha_notificacion_por_codigo(codigo_notificacion bigint)
 returns date
 begin
     declare fecha_notificacion date;
-    select fecha_notificacion_a into fecha_notificacion from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    select fecha_notificacion_a into fecha_notificacion from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
     return fecha_notificacion;
-end //
+end//
 
 delimiter ;
 
---dni_padre_notificacion
+-- dni_padre_notificacion
 
 delimiter //
 
-create function Obtenerdnipadrepornotificacion(codigo_notificacion bigint)
+create function obtener_dni_padre_por_notificacion(codigo_notificacion bigint)
 returns bigint
 begin
-    declare dni_tutor bigint;
-    select dni_tutor_notificacion into dni_tutor from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
-    return dni_tutor;
-end //
+    declare dni_padre bigint;
+    select dni_padre_notificacion into dni_padre from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
+    return dni_padre;
+end//
 
 delimiter ;
 
-
---nombre_padre_notificacion
+-- nombre_padre_notificacion
 
 delimiter //
 
-create function obtenenombrepadrepornotificacion(codigo_notificacion bigint)
+create function obtener_nombre_padre_por_notificacion(codigo_notificacion bigint)
 returns varchar(100)
 begin
-    declare nombre_tutor varchar(100);
-    select nombre_tutor into nombre_tutor from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
-    return nombre_tutor;
-end //
+    declare nombre_padre varchar(100);
+    select nombre_padre_notificacion into nombre_padre from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
+    return nombre_padre;
+end//
 
 delimiter ;
 
+-- fecha_notificacion_pm
 
---fecha_notificacion_pm
 delimiter //
 
-create function Obtenerfechanotificacionpadres(codigo_notificacion bigint)
+create function obtener_fecha_notificacion_padres(codigo_notificacion bigint)
 returns date
 begin
     declare fecha_notificacion date;
-    select fecha_notificacion_pm into fecha_notificacion from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    select fecha_notificacion_pm into fecha_notificacion from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
     return fecha_notificacion;
-end //
+end//
 
 delimiter ;
