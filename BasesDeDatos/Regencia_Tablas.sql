@@ -1,8 +1,8 @@
-drop database regencia;
+drop database mecanica;
 
-create database regencia;
+create database mecanica;
 
-use regencia;
+use mecanica;
 
 create table alumnos (
     dni_alumnos bigint not null unique,
@@ -27,7 +27,7 @@ create table tutores (
     localidad_tutor varchar(100) not null,
     gmail_tutor varchar(100) not null,
     constraint pk_dni primary key (tutor)
-    foreign key (dni_alumno_hijo) 
+    foreign key (dni_alumno_hijo), 
     references alumnos (dni_alumnos)
 );
 
@@ -36,7 +36,7 @@ create table inasistencias (
     nombre_alumno_inasistencias varchar(100) not null,
     cantidad_inasistencias bigint not null,
     constraint pk_inasistencias primary key (dni_alumnos_inasistencias),
-    foreign key (dni_alumnos_inasistencias) 
+    foreign key (dni_alumnos_inasistencias), 
     references alumnos (dni_alumnos)
 );
 
@@ -47,7 +47,7 @@ create table cursos (
     division_curso bigint not null,
     preceptor_curso varchar(100) not null,
     constraint pk_dni primary key (aula_curso),
-    foreign key (dni_alumno_curso) 
+    foreign key (dni_alumno_curso),
     references alumnos (dni_alumnos)
 );
 
@@ -59,7 +59,7 @@ create table faltas (
     motivo_falta varchar(100) not null,
     descripcion_falta text,
     constraint pk_dni primary key (codigo_falta),
-    foreign key (dni_alumno_falta) 
+    foreign key (dni_alumno_falta), 
     references alumnos (dni_alumnos)
 );
 
@@ -67,7 +67,7 @@ create table observaciones (
     codigo_falta_observaciones bigint not null unique,
     observacion_observaciones text,
     constraint pk_observaciones primary key (codigo_falta_observaciones),
-    foreign key (codigo_falta_observaciones) 
+    foreign key (codigo_falta_observaciones),
     references faltas (codigo_falta)
 );
 
@@ -76,7 +76,7 @@ create table grados (
     instancia_grado varchar(100) not null,
     consideracion_alternativa_grado varchar(100) not null,
     constraint pk_grado primary key (codigo_falta_grado),
-    foreign key (codigo_falta_grado) 
+    foreign key (codigo_falta_grado),
     references faltas (codigo_falta)
 );
 
@@ -89,6 +89,6 @@ create table notificaion_tutores (
     constraint pk_notificaion_tutores primary key (codigo_falta_notificacion),
     foreign key (codigo_falta_notificacion) 
     references faltas (codigo_falta), 
-    foreign key (dni_tutor_notificacion) 
-    references tutores (dni_tutor),
+    foreign key (dni_tutor_notificacion),
+    references tutores (dni_tutor)
 );
