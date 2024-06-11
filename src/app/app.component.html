@@ -1,20 +1,8 @@
-<div class="container">
-    <div class="card text-center">
-        <div class="card-header">
-            <b> LOGIN </b>
-        </div>
-        <div class="card-body p-4" >
-            <label style="float: left; padding-left: 16px;">Email</label>
-            <input class="form-control m-3" type="email" placeholder="Ingrese su email">
-
-            <label style="float: left; padding-left: 16px;">Contraseña</label>
-            <input class="form-control m-3" type="password" placeholder="Ingrese su contraseña">
-
-            <button class="btn btn-primary m-3">Ingresar</button>
-            <label>No tiene una cuenta? <a routerLink="/register">Registrarse</a></label>
-        </div>
-    </div>
+<div class="login-container">
+  <h2> LOGIN </h2>
+  <form action="#" method="post">
+      <input type="email" name="email" placeholder="Correo electrónico" required><br>
+      <input type="password" name="password" placeholder="Contraseña" required><br>
+      <input type="submit" value="Iniciar Sesión">
+  </form>
 </div>
-
-
-<router-outlet></router-outlet>
