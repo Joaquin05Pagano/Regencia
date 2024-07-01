@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
 
@@ -14,5 +13,3 @@ import { LoginComponent } from "./login/login.component";
 export class AppComponent {
   title = 'Regencia'
 }
-
-
