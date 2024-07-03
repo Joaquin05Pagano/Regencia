@@ -1,7 +1,9 @@
 
 <div class="chat-container">
     <div class="chat-messages" #messageContainer>
-      <div class="message" *ngFor="let message of mensajes">{{ message }}</div>
+        <div class="message" *ngFor="let message of mensajes">
+            [{{ message.timestamp }}] Regente: {{ message.text }}
+        </div>
     </div>
     <form (ngSubmit)="sendMessage()">
         <div class="chat-input">

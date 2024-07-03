@@ -2,6 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component , ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+interface Message {
+  timestamp: string;
+  text: string;
+}
+
 @Component({
   selector: 'app-chat',
   standalone: true,
@@ -9,8 +14,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
+
 export class ChatComponent implements AfterViewInit{
-  mensajes: string[] = [];
+  mensajes: Message[] = [];
   nuevoMensaje: string = '';
 
   @ViewChild('contenedorMensaje') contenedorMensaje!: ElementRef<HTMLDivElement>;
@@ -21,7 +27,8 @@ export class ChatComponent implements AfterViewInit{
   
   sendMessage() {
     if (this.nuevoMensaje.trim() !== '') {
-      this.mensajes.push(this.nuevoMensaje);
+      const timestamp = new Date().toLocaleTimeString();
+      this.mensajes.push({ timestamp, text: this.nuevoMensaje});
       this.nuevoMensaje = '';
       this.scrollToBottom();
     }
