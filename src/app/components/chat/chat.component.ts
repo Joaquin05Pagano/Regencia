@@ -42,6 +42,7 @@ export class ChatComponent implements AfterViewInit, OnInit {
   clearChat() {
     this.mensajes = [];
     localStorage.removeItem('chatMessages');
+    this.scrollToBottom();
   }
 
   private scrollToBottom() {
@@ -49,7 +50,7 @@ export class ChatComponent implements AfterViewInit, OnInit {
       setTimeout(() => {
         this.contenedorMensaje.nativeElement.scrollTop = this.contenedorMensaje.nativeElement.scrollHeight;
       }, 0);
-    }
+    } 
   }
 
   private saveMessages() {

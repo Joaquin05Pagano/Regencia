@@ -1,6 +1,6 @@
 <div class="chat-container">
     <h2> CHAT REGENCIA </h2>
-    <div class="chat-messages" #messageContainer>
+    <div class="chat-messages" #contenedorMensaje>
         <div class="message" *ngFor="let message of mensajes">
             [{{ message.timestamp }}] Regente: {{ message.text }}
         </div>
