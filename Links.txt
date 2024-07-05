@@ -1,0 +1,8 @@
+github: https://github.com/diegomanildo/Regencia
+Figma: https://www.figma.com/design/a23IxcrZHlk3h9A6iKfqgZ/Regencia?node-id=0-1
+Documentos:
+    Informacion del proyecto: https://docs.google.com/document/d/1mYMw2E5gjOgLxQSJtvko9ysQ_N85D2NCL1M2KUS4XEM/edit?usp=sharing
+    Tareas: https://docs.google.com/document/d/16XY-Vv4sN8IMkcGVXkXy3phYucal5Rv6iEluI19wsfc/edit?usp=sharing
+    Cuestionario: https://docs.google.com/document/d/1eIyzziHA9W6ddyAkYHAw_aLOxots1LZfIv_l6lPrhAQ/edit
+    Manual de usuario: https://docs.google.com/document/d/1nMj59HwxtVmoopAzuKEUgXM4JT1n2syuoZzDGdGWmMY/edit#heading=h.r9gl8wyfg0f1
+    Documentacion: https://docs.google.com/document/d/17smgJhLCkVfLxLkjaWRxoiIPl8jC1ixwvM4xTip9WTA/edit#heading=h.fnymv8w7aqhk
