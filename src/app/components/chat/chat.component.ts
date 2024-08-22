@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component , ViewChild, ElementRef, AfterViewInit, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 interface Message {
   timestamp: string;
   text: string;
 }
+
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +18,7 @@ interface Message {
 })
 
 export class ChatComponent implements AfterViewInit, OnInit {
+  constructor(private cdr: ChangeDetectorRef) {}
   mensajes: Message[] = [];
   nuevoMensaje: string = '';
 
@@ -47,9 +50,10 @@ export class ChatComponent implements AfterViewInit, OnInit {
 
   private scrollToBottom() {
     if (this.contenedorMensaje) {
+      this.cdr.detectChanges();
       setTimeout(() => {
         this.contenedorMensaje.nativeElement.scrollTop = this.contenedorMensaje.nativeElement.scrollHeight;
-      }, 0);
+      }, 50);
     } 
   }
 
