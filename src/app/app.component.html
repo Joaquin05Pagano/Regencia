@@ -1,2 +1,10 @@
-<app-chat></app-chat>
+<div *ngIf="!isLoggedIn; else chatTemplate">
+    <login-component></login-component>
+</div>
+  
+<ng-template #chatTemplate>
+    <app-chat></app-chat>
+</ng-template>
+
+<login-component></login-component>
 <router-outlet></router-outlet>

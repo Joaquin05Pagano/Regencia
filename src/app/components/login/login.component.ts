@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'login-component',
@@ -12,7 +12,14 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class LoginComponent {
-  title = 'Login'
+  constructor(private router: Router) {}
+
+  isLoggedIn = false;
+
+  toChat() {
+    this.isLoggedIn = true;
+    this.router.navigate(['/chat']);
+  }
 }
 
 

@@ -92,3 +92,14 @@ create table notificaion_tutores (
     foreign key (dni_tutor_notificacion),
     references tutores (dni_tutor)
 );
+
+create table regente (
+    dni_regente bigint not null unique,
+    nombre_regente varchar(100) not null,
+    fecha_naci_regente date not null,
+    direccion_regente varchar(100) not null,
+    localidad_regente varchar(100) not null,
+    cod_postal_regente int not null,
+    tel_regente varchar(100) not null,
+    gmail_regente varchar(100) not null,
+);
