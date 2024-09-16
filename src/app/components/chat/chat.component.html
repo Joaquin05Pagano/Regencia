@@ -1,16 +1,18 @@
 <div class="chat-container">
-    <h2> CHAT REGENCIA </h2>
+    <h2>CHAT REGENCIA</h2>
+    
     <div class="chat-messages" #contenedorMensaje>
-        <div class="message" *ngFor="let message of mensajes">
-            [{{ message.timestamp }}] Regente: {{ message.text }}
+        <div class="message sender" *ngFor="let message of mensajes">
+            <p class="message-text">[{{ message.timestamp }}] Regente: {{ message.text }}</p>
         </div>
     </div>
-    <form (ngSubmit)="sendMessage()">
+    
+    <form (ngSubmit)="sendMessage()" class="chat-input-form">
         <div class="chat-input">
             <input type="text" placeholder="Escribe tu mensaje aquí" [(ngModel)]="nuevoMensaje" name="nuevoMensaje" required>
             <button type="submit">Enviar</button>
         </div>
     </form>
+    
     <button (click)="clearChat()" class="clear-chat-button">Borrar Chat</button>
 </div>
-
