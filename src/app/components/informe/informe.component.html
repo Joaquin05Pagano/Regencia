@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Convivencia</title>
+</head>
+<body>
+    <div class="container">
+        <h1>INFORME DE CONVIVENCIA</h1>
+        <p>Gobierno de la Ciudad Autónoma de Buenos Aires<br>
+        Ministerio de Educación<br>
+        E.T. Nº 35 D.E. 18, "Ing. Eduardo Latizna"</p>
+
+        <div class="form-group">
+            <label for="alumno">1.- El alumno/a:</label>
+            <div class="inline-group">
+                <input type="text" id="alumno" class="input-line" placeholder="Nombre del alumno/a">
+                <input type="text" id="anio" class="input-line" placeholder="Año">
+                <input type="text" id="division" class="input-line" placeholder="División">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="accion">2.- Ha realizado la acción que se describe a continuación:</label>
+            <input type="text" id="accion" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label>Transgrediendo Normas del Reglamento de Convivencia de la escuela.</label>
+        </div>
+
+        <div class="form-group">
+            <label for="solicitud">3.- Solicitud de sanción:</label>
+            <input type="text" id="solicitud" class="input-line" placeholder="Descripción de la sanción">
+        </div>
+
+        <div class="form-group">
+            <label for="docente">Docente:</label>
+            <div class="inline-group">
+                <input type="text" id="docente" class="input-line" placeholder="Nombre del docente">
+                <input type="text" id="cargo" class="input-line" placeholder="Cargo/Función">
+                <input type="text" id="fecha-docente" class="input-line" placeholder="Fecha">
+                <input type="text" id="firma-docente" class="input-line" placeholder="Firma">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="descargo">4.- Descargo del Alumno/a:</label>
+            <input type="text" id="descargo" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label for="consejo-aula">5.- Informe de Consejo de Aula:</label>
+            <input type="text" id="consejo-aula" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label for="consejo-convivencia">6.- Informe de Consejo de Convivencia:</label>
+            <input type="text" id="consejo-convivencia" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label for="observaciones">7.- Observaciones:</label>
+            <input type="text" id="observaciones" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label>8.- Se considera que corresponde (Indicar a continuación):</label>
+            <div class="inline-checks">
+                <label>
+                    <input type="checkbox" id="leve" name="leve"> 1ª Instancia LEVE
+                </label>
+                <label>
+                    <input type="checkbox" id="grave" name="grave"> 2ª Instancia GRAVE
+                </label>
+                <label>
+                    <input type="checkbox" id="muy-grave" name="muy-grave"> 3ª Instancia MUY GRAVE
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Otra Consideración:</label>
+            <input type="text" class="input-line">
+        </div>
+
+        <div class="form-group">
+            <label>Firma Directivo:</label>
+            <input type="text" class="input-line small-input">
+            <label>Fecha:</label>
+            <input type="text" class="input-line small-input">
+        </div>
+
+        <div class="form-group">
+            <label>9.- Notificación:</label>
+            <label>Alumno:</label>
+            <input type="text" class="input-line small-input">
+            <label>Padre/Madre/Tutor:</label>
+            <input type="text" class="input-line small-input">
+            <label>Fecha:</label>
+            <input type="text" class="input-line small-input">
+        </div>
+
+        <div class="button-container">
+            <button class="print-button" onclick="window.print()">Imprimir</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 <div *ngIf="!isLoggedIn; else chatTemplate">
     <login-component></login-component>
     <app-chat></app-chat>
+    <app-informe></app-informe>
 </div>
 
 <ng-template #chatTemplate>
