@@ -20,6 +20,10 @@ export class LoginComponent {
     this.isLoggedIn = true;
     this.router.navigate(['/chat']);
   }
+
+  goToMain(){
+    this.router.navigate(['/main']);
+  }
 }
 
 

@@ -147,3 +147,8 @@
     background-color: #ddd;
     border-radius: 10px;
 }
+
+.button-back {
+    text-align: center;
+    padding-top: 10px;
+}

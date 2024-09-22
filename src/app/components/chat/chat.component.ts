@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component , ViewChild, ElementRef, AfterViewInit, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface Message {
   timestamp: string;
@@ -16,6 +17,13 @@ interface Message {
 })
 
 export class ChatComponent implements AfterViewInit, OnInit {
+
+  constructor(private router: Router) {}
+
+  goToMain() {
+    this.router.navigate(['/main']);
+  }
+
   mensajes: Message[] = [];
   nuevoMensaje: string = '';
 

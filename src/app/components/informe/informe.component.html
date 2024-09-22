@@ -103,8 +103,11 @@
         </div>
 
         <div class="button-container">
-            <button class="print-button" onclick="window.print()">Imprimir</button>
+            <button class="print-button" (click)="imprimirInforme()">Imprimir</button>
         </div>
+    </div>
+    <div class="button-back">
+        <button (click)="goToMain()">VOLVER</button>
     </div>
 </body>
 </html>

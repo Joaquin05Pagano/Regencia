@@ -49,3 +49,14 @@ h1, h2, p {
     font-size: 16px;
     cursor: pointer;
 }
+
+.button-back {
+    text-align: center;
+    padding-top: 10px;
+}
+
+@media print {
+    button {
+        display: none;
+    }
+}

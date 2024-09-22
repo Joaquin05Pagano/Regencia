@@ -9,10 +9,13 @@
     
     <form (ngSubmit)="sendMessage()" class="chat-input-form">
         <div class="chat-input">
-            <input type="text" placeholder="Escribe tu mensaje aquí" [(ngModel)]="nuevoMensaje" name="nuevoMensaje" required>
+            <input type="text" placeholder="Escribe tu mensaje aquí" [(ngModel)]="nuevoMensaje" name="nuevoMensaje" required autocomplete="off">
             <button type="submit">Enviar</button>
         </div>
     </form>
     
     <button (click)="clearChat()" class="clear-chat-button">Borrar Chat</button>
+</div>
+<div class="button-back">
+    <button (click)="goToMain()">VOLVER</button>
 </div>
