@@ -3,7 +3,8 @@ import { Component , ViewChild, ElementRef, AfterViewInit, OnInit} from '@angula
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-interface Message {
+//Estructura de como esta conformado el mensaje (tiempo y texto)
+interface Message { 
   timestamp: string;
   text: string;
 }
@@ -20,6 +21,7 @@ export class ChatComponent implements AfterViewInit, OnInit {
 
   constructor(private router: Router) {}
 
+  //Funcion para navegar a la ruta mains
   goToMain() {
     this.router.navigate(['/main']);
   }
@@ -29,15 +31,18 @@ export class ChatComponent implements AfterViewInit, OnInit {
 
   @ViewChild('contenedorMensaje') contenedorMensaje!: ElementRef<HTMLDivElement>;
   
+  //Se ejecuta al iniciar el componente, lo que hace cargar los mensajes guardados en el LocalStorage
   ngOnInit(): void {
-    this.loadMessages();
+    this.loadMessages(); 
   }
-
+  //Scroll luego de que inicialize la vista completa
   ngAfterViewInit() {
-    this.scrollToBottom();
+    this.scrollToBottom(); 
   }
   
+  //Funcion para enviar y guardar los mensajes
   sendMessage() {
+    //Crea un nuevo mensaje y lo añade al arreglo de mensajes
     if (this.nuevoMensaje.trim() !== '') {
       const timestamp = new Date().toLocaleTimeString();
       this.mensajes.push({ timestamp, text: this.nuevoMensaje});
@@ -47,12 +52,14 @@ export class ChatComponent implements AfterViewInit, OnInit {
     }
   }
 
+  //Limpia los mensajes del chat
   clearChat() {
     this.mensajes = [];
     localStorage.removeItem('chatMessages');
     this.scrollToBottom();
   }
 
+  // Funcion para desplazar automaticamente hacia abajo 
   private scrollToBottom() {
     if (this.contenedorMensaje) {
       setTimeout(() => {
@@ -61,10 +68,12 @@ export class ChatComponent implements AfterViewInit, OnInit {
     } 
   }
 
+  // Guarda los mensajes en el LocalStorage
   private saveMessages() {
     localStorage.setItem('chatMessages', JSON.stringify(this.mensajes));
   }
 
+  // Carga los mensajes del LocalStorage (si es que ya existen mensajes guardados)
   private loadMessages() {
     const savedMessages = localStorage.getItem('chatMessages');
     if(savedMessages) {

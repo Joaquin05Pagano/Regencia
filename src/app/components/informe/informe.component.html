@@ -6,6 +6,7 @@
     <title>Informe de Convivencia</title>
 </head>
 <body>
+    <!-- Separados por div, el informe completo con sus respectivos inputs para completarlo -->
     <div class="container">
         <h1>INFORME DE CONVIVENCIA</h1>
         <p>Gobierno de la Ciudad Autónoma de Buenos Aires<br>
@@ -102,10 +103,12 @@
             <input type="text" class="input-line small-input">
         </div>
 
+        <!-- boton para imprimir un informe -->
         <div class="button-container">
             <button class="print-button" (click)="imprimirInforme()">Imprimir</button>
         </div>
     </div>
+    <!--boton para volver al main -->
     <div class="button-back">
         <button (click)="goToMain()">VOLVER</button>
     </div>

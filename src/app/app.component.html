@@ -1,14 +1,5 @@
-<!--
+<!-- COMPONENTE PRINCIPAL (ACA ESTA BASICAMENTE TODO)
+-->
 
-<div *ngIf="!isLoggedIn; else chatTemplate">
-    <login-component></login-component>
-    <app-chat></app-chat>
-    <app-informe></app-informe>
-</div>
-
-<ng-template #chatTemplate>
-    <app-chat></app-chat>
-</ng-template>
-
-<router-outlet></router-outlet> -->
+<!-- Esta linea lo que hace es mostrar el componente en funcion de la ruta que este visitando-->
 <router-outlet></router-outlet>

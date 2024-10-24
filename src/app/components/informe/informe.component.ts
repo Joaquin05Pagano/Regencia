@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
 })
 export class InformeComponent {
 
+  // Dependencia para poder navegar entre rutas
   constructor(private router: Router) {}
 
+  //funcion para navegar a la ruta main
   goToMain() {
     this.router.navigate(['/main']);
   }
-
+  
   imprimirInforme() {
     window.print();
   }
