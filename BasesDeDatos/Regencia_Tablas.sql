@@ -1,105 +1,136 @@
-drop database mecanica;
+-- Elimina la base de datos 'mecanica' si ya existe para evitar conflictos
+DROP DATABASE mecanica;
 
-create database mecanica;
+-- Crea la base de datos 'mecanica'
+CREATE DATABASE mecanica;
 
-use mecanica;
+-- Selecciona la base de datos 'mecanica' para trabajar en ella
+USE mecanica;
 
-create table alumnos (
-    dni_alumnos bigint not null unique,
-    nombre_alumnos varchar(100) not null,
-    fecha_naci_alumnos date not null,
-    direccion_alumnos varchar(100) not null,
-    localidad_alumnos varchar(100) not null,
-    cod_postal_alumnos int not null,
-    tel_alumnos varchar(100) not null,
-    gmail_alumnos varchar(100) not null,
-    constraint pk_dni primary key (dni_alumnos)
+-- =======================
+-- Tabla: alumnos
+-- =======================
+-- Almacena información personal de los alumnos.
+CREATE TABLE alumnos (
+    dni_alumnos BIGINT NOT NULL UNIQUE,  -- Documento de identidad del alumno (único)
+    nombre_alumnos VARCHAR(100) NOT NULL,  -- Nombre completo del alumno
+    fecha_naci_alumnos DATE NOT NULL,  -- Fecha de nacimiento del alumno
+    direccion_alumnos VARCHAR(100) NOT NULL,  -- Dirección de residencia
+    localidad_alumnos VARCHAR(100) NOT NULL,  -- Localidad del alumno
+    cod_postal_alumnos INT NOT NULL,  -- Código postal de la localidad
+    tel_alumnos VARCHAR(100) NOT NULL,  -- Teléfono de contacto
+    gmail_alumnos VARCHAR(100) NOT NULL,  -- Correo electrónico
+    CONSTRAINT pk_dni PRIMARY KEY (dni_alumnos)  -- Clave primaria: dni del alumno
 );
 
-create table tutores (
-    dni_alumno_hijo bigint not null unique,
-    nombre_alumnos_hijo varchar(100) not null,
-    dni_tutor bigint not null unique,
-    nombre_tutor varchar(100) not null,
-    fecha_naci_tutor date not null,
-    tel_tutor varchar(100) not null,
-    direccion_tutor varchar(100) not null,
-    localidad_tutor varchar(100) not null,
-    gmail_tutor varchar(100) not null,
-    constraint pk_dni primary key (tutor)
-    foreign key (dni_alumno_hijo), 
-    references alumnos (dni_alumnos)
+-- =======================
+-- Tabla: tutores
+-- =======================
+-- Registra a los tutores de los alumnos.
+CREATE TABLE tutores (
+    dni_alumno_hijo BIGINT NOT NULL UNIQUE,  -- Documento del alumno (único)
+    nombre_alumnos_hijo VARCHAR(100) NOT NULL,  -- Nombre del alumno
+    dni_tutor BIGINT NOT NULL UNIQUE,  -- Documento del tutor (único)
+    nombre_tutor VARCHAR(100) NOT NULL,  -- Nombre del tutor
+    fecha_naci_tutor DATE NOT NULL,  -- Fecha de nacimiento del tutor
+    tel_tutor VARCHAR(100) NOT NULL,  -- Teléfono de contacto del tutor
+    direccion_tutor VARCHAR(100) NOT NULL,  -- Dirección de residencia del tutor
+    localidad_tutor VARCHAR(100) NOT NULL,  -- Localidad del tutor
+    gmail_tutor VARCHAR(100) NOT NULL,  -- Correo electrónico del tutor
+    CONSTRAINT pk_dni PRIMARY KEY (tutor),  -- Clave primaria: dni del tutor
+    FOREIGN KEY (dni_alumno_hijo) REFERENCES alumnos (dni_alumnos)  -- Clave foránea: referencia al alumno
 );
 
-create table inasistencias (
-    dni_alumnos_inasistencias bigint not null unique,
-    nombre_alumno_inasistencias varchar(100) not null,
-    cantidad_inasistencias bigint not null,
-    constraint pk_inasistencias primary key (dni_alumnos_inasistencias),
-    foreign key (dni_alumnos_inasistencias), 
-    references alumnos (dni_alumnos)
+-- =======================
+-- Tabla: inasistencias
+-- =======================
+-- Registra las inasistencias de los alumnos.
+CREATE TABLE inasistencias (
+    dni_alumnos_inasistencias BIGINT NOT NULL UNIQUE,  -- Documento del alumno (único)
+    nombre_alumno_inasistencias VARCHAR(100) NOT NULL,  -- Nombre del alumno
+    cantidad_inasistencias BIGINT NOT NULL,  -- Cantidad de inasistencias acumuladas
+    CONSTRAINT pk_inasistencias PRIMARY KEY (dni_alumnos_inasistencias),  -- Clave primaria: dni del alumno
+    FOREIGN KEY (dni_alumnos_inasistencias) REFERENCES alumnos (dni_alumnos)  -- Clave foránea
 );
 
-create table cursos (
-    dni_alumno_curso bigint not null unique,
-    aula_curso bigint not null,
-    anio_curso bigint not null,
-    division_curso bigint not null,
-    preceptor_curso varchar(100) not null,
-    constraint pk_dni primary key (aula_curso),
-    foreign key (dni_alumno_curso),
-    references alumnos (dni_alumnos)
+-- =======================
+-- Tabla: cursos
+-- =======================
+-- Almacena los cursos asignados a los alumnos.
+CREATE TABLE cursos (
+    dni_alumno_curso BIGINT NOT NULL UNIQUE,  -- Documento del alumno (único)
+    aula_curso BIGINT NOT NULL,  -- Número del aula
+    anio_curso BIGINT NOT NULL,  -- Año del curso
+    division_curso BIGINT NOT NULL,  -- División del curso
+    preceptor_curso VARCHAR(100) NOT NULL,  -- Nombre del preceptor del curso
+    CONSTRAINT pk_dni PRIMARY KEY (aula_curso),  -- Clave primaria: número de aula
+    FOREIGN KEY (dni_alumno_curso) REFERENCES alumnos (dni_alumnos)  -- Clave foránea
 );
 
-create table faltas (
-    codigo_falta bigint not null unique,
-    dni_alumno_falta bigint not null unique,
-    alumno_falta varchar(100) not null,
-    fecha_falta date not null,
-    motivo_falta varchar(100) not null,
-    descripcion_falta text,
-    constraint pk_dni primary key (codigo_falta),
-    foreign key (dni_alumno_falta), 
-    references alumnos (dni_alumnos)
+-- =======================
+-- Tabla: faltas
+-- =======================
+-- Registra las faltas individuales de los alumnos.
+CREATE TABLE faltas (
+    codigo_falta BIGINT NOT NULL UNIQUE,  -- Código único de la falta
+    dni_alumno_falta BIGINT NOT NULL UNIQUE,  -- Documento del alumno (único)
+    alumno_falta VARCHAR(100) NOT NULL,  -- Nombre del alumno
+    fecha_falta DATE NOT NULL,  -- Fecha de la falta
+    motivo_falta VARCHAR(100) NOT NULL,  -- Motivo de la falta
+    descripcion_falta TEXT,  -- Descripción adicional de la falta
+    CONSTRAINT pk_dni PRIMARY KEY (codigo_falta),  -- Clave primaria: código de la falta
+    FOREIGN KEY (dni_alumno_falta) REFERENCES alumnos (dni_alumnos)  -- Clave foránea
 );
 
-create table observaciones (
-    codigo_falta_observaciones bigint not null unique,
-    observacion_observaciones text,
-    constraint pk_observaciones primary key (codigo_falta_observaciones),
-    foreign key (codigo_falta_observaciones),
-    references faltas (codigo_falta)
+-- =======================
+-- Tabla: observaciones
+-- =======================
+-- Almacena observaciones relacionadas con las faltas.
+CREATE TABLE observaciones (
+    codigo_falta_observaciones BIGINT NOT NULL UNIQUE,  -- Código de la falta (único)
+    observacion_observaciones TEXT,  -- Observación sobre la falta
+    CONSTRAINT pk_observaciones PRIMARY KEY (codigo_falta_observaciones),  -- Clave primaria: código de la falta
+    FOREIGN KEY (codigo_falta_observaciones) REFERENCES faltas (codigo_falta)  -- Clave foránea
 );
 
-create table grados (
-    codigo_falta_grado bigint not null unique,
-    instancia_grado varchar(100) not null,
-    consideracion_alternativa_grado varchar(100) not null,
-    constraint pk_grado primary key (codigo_falta_grado),
-    foreign key (codigo_falta_grado),
-    references faltas (codigo_falta)
+-- =======================
+-- Tabla: grados
+-- =======================
+-- Registra el estado o instancia de cada falta.
+CREATE TABLE grados (
+    codigo_falta_grado BIGINT NOT NULL UNIQUE,  -- Código de la falta (único)
+    instancia_grado VARCHAR(100) NOT NULL,  -- Instancia de la falta
+    consideracion_alternativa_grado VARCHAR(100) NOT NULL,  -- Consideración adicional sobre la falta
+    CONSTRAINT pk_grado PRIMARY KEY (codigo_falta_grado),  -- Clave primaria: código de la falta
+    FOREIGN KEY (codigo_falta_grado) REFERENCES faltas (codigo_falta)  -- Clave foránea
 );
 
-create table notificaion_tutores (
-    codigo_falta_notificacion bigint not null unique,
-    fecha_notificacion_a date not null,
-    dni_tutor_notificacion bigint not null unique,
-    nombre_tutor_notificacion varchar(100) not null,
-    fecha_notificacion_pm date not null,
-    constraint pk_notificaion_tutores primary key (codigo_falta_notificacion),
-    foreign key (codigo_falta_notificacion) 
-    references faltas (codigo_falta), 
-    foreign key (dni_tutor_notificacion),
-    references tutores (dni_tutor)
+-- =======================
+-- Tabla: notificaion_tutores
+-- =======================
+-- Registra las notificaciones enviadas a los tutores.
+CREATE TABLE notificaion_tutores (
+    codigo_falta_notificacion BIGINT NOT NULL UNIQUE,  -- Código de la falta (único)
+    fecha_notificacion_a DATE NOT NULL,  -- Fecha de la notificación inicial
+    dni_tutor_notificacion BIGINT NOT NULL UNIQUE,  -- Documento del tutor (único)
+    nombre_tutor_notificacion VARCHAR(100) NOT NULL,  -- Nombre del tutor
+    fecha_notificacion_pm DATE NOT NULL,  -- Fecha de seguimiento o segunda notificación
+    CONSTRAINT pk_notificaion_tutores PRIMARY KEY (codigo_falta_notificacion),  -- Clave primaria: código de la falta
+    FOREIGN KEY (codigo_falta_notificacion) REFERENCES faltas (codigo_falta),  -- Clave foránea: falta relacionada
+    FOREIGN KEY (dni_tutor_notificacion) REFERENCES tutores (dni_tutor)  -- Clave foránea: tutor notificado
 );
 
-create table regente (
-    dni_regente bigint not null unique,
-    nombre_regente varchar(100) not null,
-    fecha_naci_regente date not null,
-    direccion_regente varchar(100) not null,
-    localidad_regente varchar(100) not null,
-    cod_postal_regente int not null,
-    tel_regente varchar(100) not null,
-    gmail_regente varchar(100) not null,
+-- =======================
+-- Tabla: regente
+-- =======================
+-- Almacena los datos del regente.
+CREATE TABLE regente (
+    dni_regente BIGINT NOT NULL UNIQUE,  -- Documento del regente (único)
+    nombre_regente VARCHAR(100) NOT NULL,  -- Nombre del regente
+    fecha_naci_regente DATE NOT NULL,  -- Fecha de nacimiento del regente
+    direccion_regente VARCHAR(100) NOT NULL,  -- Dirección del regente
+    localidad_regente VARCHAR(100) NOT NULL,  -- Localidad de residencia
+    cod_postal_regente INT NOT NULL,  -- Código postal
+    tel_regente VARCHAR(100) NOT NULL,  -- Teléfono del regente
+    gmail_regente VARCHAR(100) NOT NULL  -- Correo electrónico del regente
 );
