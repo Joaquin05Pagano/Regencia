@@ -1,608 +1,548 @@
---------------------------------Tabla Alumnos--------------------------------
+-------------------------------- Tabla Alumnos --------------------------------
 
--- obtener_alumno_dni
+-- Función para obtener el DNI del alumno dado su nombre.
 delimiter //
-
-create function obtener_alumno_dni(nombre_alumno varchar(100))
+create function obtenerdnialumno(nombre_alumno varchar(100))
 returns bigint
 begin
     declare dni bigint;
+    -- Se selecciona el DNI del alumno de la tabla 'alumnos' donde el nombre coincide.
     select dni_alumnos into dni from alumnos where nombre_alumnos = nombre_alumno;
-    return dni;
+    return dni; -- Se retorna el DNI obtenido.
 end//
-
 delimiter ;
 
--- obtener_nombre_alumno
+-- Función para obtener el nombre del alumno dado su DNI.
 delimiter //
-
-create function obtener_nombre_alumno(dni_alumno bigint)
+create function obtenernombrealumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare nombre varchar(100);
+    -- Se selecciona el nombre del alumno de la tabla 'alumnos' donde el DNI coincide.
     select nombre_alumnos into nombre from alumnos where dni_alumnos = dni_alumno;
-    return nombre;
+    return nombre; -- Se retorna el nombre obtenido.
 end//
-
 delimiter ;
 
--- obtener_fecha_nacimiento_alumno
+-- Función para obtener la fecha de nacimiento del alumno dado su DNI.
 delimiter //
-
-create function obtener_fecha_nacimiento_alumno(dni_alumno bigint)
+create function obtenerfechanacimientoalumno(dni_alumno bigint)
 returns date
 begin
     declare fecha_nacimiento date;
+    -- Se selecciona la fecha de nacimiento del alumno de la tabla 'alumnos' donde el DNI coincide.
     select fecha_naci_alumnos into fecha_nacimiento from alumnos where dni_alumnos = dni_alumno;
-    return fecha_nacimiento;
+    return fecha_nacimiento; -- Se retorna la fecha de nacimiento obtenida.
 end//
-
 delimiter ;
 
--- obtener_direccion_alumno
+-- Función para obtener la dirección del alumno dado su DNI.
 delimiter //
-
-create function obtener_direccion_alumno(dni_alumno bigint)
+create function obtenerdireccionalumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare direccion varchar(100);
+    -- Se selecciona la dirección del alumno de la tabla 'alumnos' donde el DNI coincide.
     select direccion_alumnos into direccion from alumnos where dni_alumnos = dni_alumno;
-    return direccion;
+    return direccion; -- Se retorna la dirección obtenida.
 end//
-
 delimiter ;
 
--- obtener_localidad_alumno
+-- Función para obtener la localidad del alumno dado su DNI.
 delimiter //
-
-create function obtener_localidad_alumno(dni_alumno bigint)
+create function obtenerlocalidadalumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare localidad varchar(100);
+    -- Se selecciona la localidad del alumno de la tabla 'alumnos' donde el DNI coincide.
     select localidad_alumnos into localidad from alumnos where dni_alumnos = dni_alumno;
-    return localidad;
+    return localidad; -- Se retorna la localidad obtenida.
 end//
-
 delimiter ;
 
--- obtener_codigo_postal_alumno
+-- Función para obtener el código postal del alumno dado su DNI.
 delimiter //
-
-create function obtener_codigo_postal_alumno(dni_alumno bigint)
+create function obtenercodigopostalatualumno(dni_alumno bigint)
 returns int
 begin
     declare cod_postal int;
+    -- Se selecciona el código postal del alumno de la tabla 'alumnos' donde el DNI coincide.
     select cod_postal_alumnos into cod_postal from alumnos where dni_alumnos = dni_alumno;
-    return cod_postal;
+    return cod_postal; -- Se retorna el código postal obtenido.
 end//
-
 delimiter ;
 
--- obtener_telefono_alumno
+-- Función para obtener el teléfono del alumno dado su DNI.
 delimiter //
-
-create function obtener_telefono_alumno(dni_alumno bigint)
+create function obtenertelefonoalumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare telefono varchar(100);
+    -- Se selecciona el teléfono del alumno de la tabla 'alumnos' donde el DNI coincide.
     select tel_alumnos into telefono from alumnos where dni_alumnos = dni_alumno;
-    return telefono;
+    return telefono; -- Se retorna el teléfono obtenido.
 end//
-
 delimiter ;
 
--- obtener_gmail_alumno
+-- Función para obtener el Gmail del alumno dado su DNI.
 delimiter //
-
-create function obtener_gmail_alumno(dni_alumno bigint)
+create function obtenergmailalumno(dni_alumno bigint)
 returns varchar(100)
 begin
     declare gmail varchar(100);
+    -- Se selecciona el correo electrónico del alumno de la tabla 'alumnos' donde el DNI coincide.
     select gmail_alumnos into gmail from alumnos where dni_alumnos = dni_alumno;
-    return gmail;
+    return gmail; -- Se retorna el Gmail obtenido.
 end//
-
 delimiter ;
 
+-------------------------------- Tabla Padres Alumnos --------------------------------
 
---------------------------------Tabla tutores--------------------------------
--- obtener_dni_alumno_hijo
+-- Función para obtener el DNI del hijo a partir del DNI del tutor.
 delimiter //
-
-create function obtener_dni_alumno_hijo(dni_tutor bigint)
+create function obtenerdnialumnohijo(dni_tutor bigint)
 returns bigint
 begin
     declare dni_hijo bigint;
+    -- Se selecciona el DNI del hijo de la tabla 'tutores' donde el DNI del tutor coincide.
     select dni_alumno_hijo into dni_hijo from tutores where dni_tutor = dni_tutor;
-    return dni_hijo;
+    return dni_hijo; -- Se retorna el DNI del hijo obtenido.
 end//
-
 delimiter ;
 
--- obtener_nombre_alumno_hijo 
+-- Función para obtener el nombre del hijo a partir del DNI del tutor.
 delimiter //
-
-create function obtener_nombre_alumno_hijo(dni_tutor bigint)
+create function obtenernombrealumnohijo(dni_tutor bigint)
 returns varchar(100)
 begin
     declare nombre_alumno_hijo varchar(100);
+    -- Se selecciona el nombre del hijo de la tabla 'tutores' donde el DNI del tutor coincide.
     select nombre_alumnos_hijo into nombre_alumno_hijo from tutores where dni_tutor = dni_tutor;
-    return nombre_alumno_hijo;
+    return nombre_alumno_hijo; -- Se retorna el nombre del hijo obtenido.
 end//
-
 delimiter ;
 
--- obtener_dni_tutor 
+-- Función para obtener el DNI del padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_dni_tutor(dni_alumno_hijo bigint)
+create function obtenerdnipadre(dni_alumno_hijo bigint)
 returns bigint
 begin
     declare dni_tutor bigint;
+    -- Se selecciona el DNI del tutor de la tabla 'tutores' donde el DNI del hijo coincide.
     select dni_tutor into dni_tutor from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return dni_tutor;
+    return dni_tutor; -- Se retorna el DNI del padre obtenido.
 end//
-
 delimiter ;
 
--- obtener_nombre_tutor
+-- Función para obtener el nombre del padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_nombre_tutor(dni_alumno_hijo bigint)
+create function obtenernombrepadre(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare nombre_tutor varchar(100);
+    -- Se selecciona el nombre del tutor de la tabla 'tutores' donde el DNI del hijo coincide.
     select nombre_tutor into nombre_tutor from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return nombre_tutor;
+    return nombre_tutor; -- Se retorna el nombre del padre obtenido.
 end//
-
 delimiter ;
 
--- obtener_fecha_nacimiento_tutor
+-- Función para obtener la fecha de nacimiento del padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_fecha_nacimiento_tutor(dni_alumno_hijo bigint)
+create function obtenerfechanacimientopadre(dni_alumno_hijo bigint)
 returns date
 begin
     declare fecha_nacimiento date;
-    select fecha_naci_tutor into fecha_nacimiento from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return fecha_nacimiento;
+    -- Se selecciona la fecha de nacimiento del tutor de la tabla 'tutores' donde el DNI del hijo coincide.
+    select fecha_naci_padre into fecha_nacimiento from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    return fecha_nacimiento; -- Se retorna la fecha de nacimiento del padre obtenida.
 end//
-
 delimiter ;
 
--- obtener_direccion_tutor
+-- Función para obtener la dirección de la madre/padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_direccion_tutor(dni_alumno_hijo bigint)
+create function obtenerdireccionmadrepadre(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare direccion varchar(100);
-    select direccion_tutor into direccion from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return direccion;
+    -- Se selecciona la dirección de la madre/padre de la tabla 'tutores' donde el DNI del hijo coincide.
+    select direccion_madre_padre into direccion from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    return direccion; -- Se retorna la dirección obtenida.
 end//
-
 delimiter ;
 
--- obtener_localidad_tutor
+-- Función para obtener la localidad de la madre/padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_localidad_tutor(dni_alumno_hijo bigint)
+create function obtenerlocalidadmadrepadre(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare localidad varchar(100);
-    select localidad_tutor into localidad from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return localidad;
+    -- Se selecciona la localidad de la madre/padre de la tabla 'tutores' donde el DNI del hijo coincide.
+    select localidad_madre_padre into localidad from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    return localidad; -- Se retorna la localidad obtenida.
 end//
-
 delimiter ;
 
--- obtener_telefono_tutor
+-- Función para obtener el teléfono del padre a partir del DNI del hijo.
 delimiter //
-
-create function obtener_telefono_tutor(dni_alumno_hijo bigint)
+create function obtenertelefonopadre(dni_alumno_hijo bigint)
 returns varchar(100)
 begin
     declare telefono varchar(100);
-    select tel_tutor into telefono from tutores where dni_alumno_hijo = dni_alumno_hijo;
-    return telefono;
+    -- Se selecciona el teléfono del tutor de la tabla 'tutores' donde el DNI del hijo coincide.
+    select tel_padre into telefono from tutores where dni_alumno_hijo = dni_alumno_hijo;
+    return telefono; -- Se retorna el teléfono obtenido.
 end//
-
 delimiter ;
 
 
+-------------------------------- Tabla Inasistencias --------------------------------
 
---------------------------------Tabla Inasistencias--------------------------------
-
--- obtener_dni_alumno_por_inasistencia
+-- Función para obtener el DNI del alumno a partir del código de inasistencia.
 delimiter //
-
-create function obtener_dni_alumno_por_inasistencia(codigo_inasistencia bigint)
+create function obtenerdnialumnoporinasistencia(codigo_inasistencia bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
+    -- Se selecciona el DNI del alumno de la tabla 'inasistencias' donde el código de inasistencia coincide.
     select dni_alumnos_inasistencias into dni_alumno from inasistencias where codigo_inasistencia = codigo_inasistencia;
-    return dni_alumno;
+    return dni_alumno; -- Se retorna el DNI obtenido.
 end//
-
 delimiter ;
 
--- obtener_nombre_alumno_por_inasistencia
+-- Función para obtener el nombre del alumno a partir del código de inasistencia.
 delimiter //
-
-create function obtener_nombre_alumno_por_inasistencia(codigo_inasistencia bigint)
+create function obtenernombrealumnoporinasistencia(codigo_inasistencia bigint)
 returns varchar(100)
 begin
     declare nombre_alumno varchar(100);
+    -- Se selecciona el nombre del alumno de la tabla 'inasistencias' donde el código de inasistencia coincide.
     select nombre_alumno_inasistencias into nombre_alumno from inasistencias where codigo_inasistencia = codigo_inasistencia;
-    return nombre_alumno;
+    return nombre_alumno; -- Se retorna el nombre obtenido.
 end//
-
 delimiter ;
 
--- obtener_cantidad_inasistencias
+-- Función para obtener la cantidad de inasistencias de un alumno dado su DNI.
 delimiter //
-
-create function obtener_cantidad_inasistencias(dni_alumno bigint)
+create function obtenercantidadinasistencias(dni_alumno bigint)
 returns bigint
 begin
     declare cantidad_inasistencias bigint;
+    -- Se suma la cantidad de inasistencias de la tabla 'inasistencias' donde el DNI del alumno coincide.
     select sum(cantidad_inasistencias) into cantidad_inasistencias from inasistencias where dni_alumnos_inasistencias = dni_alumno;
-    return cantidad_inasistencias;
+    return cantidad_inasistencias; -- Se retorna la cantidad total de inasistencias.
 end//
-
 delimiter ;
 
+-------------------------------- Tabla Curso --------------------------------
 
-
---------------------------------Tabla Curso--------------------------------
-
-
--- obtener_dni_alumno_por_curso
+-- Función para obtener el DNI del alumno a partir del aula, año y división del curso.
 delimiter //
-
-create function obtener_dni_alumno_por_curso(aula_curso bigint, anio_curso bigint, division_curso bigint)
+create function obtenerdnialumnoporcurso(aula_curso bigint, anio_curso bigint, division_curso bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
-    select dni_alumno_curso into dni_alumno from curso where aula_curso = aula_curso and anio_curso = anio_curso and division_curso = division_curso;
-    return dni_alumno;
+    -- Se selecciona el DNI del alumno de la tabla 'cursos' donde coinciden aula, año y división.
+    select dni_alumno_curso into dni_alumno from cursos where aula_curso = aula_curso and anio_curso = anio_curso and division_curso = division_curso;
+    return dni_alumno; -- Se retorna el DNI obtenido.
 end//
-
 delimiter ;
 
--- obtener_aula_por_alumno_curso
+-- Función para obtener el aula del alumno dado su DNI.
 delimiter //
-
-create function obtener_aula_por_alumno_curso(dni_alumno bigint)
+create function obteneraulaporalumnocurso(dni_alumno bigint)
 returns bigint
 begin
     declare aula bigint;
-    select aula_curso into aula from curso where dni_alumno_curso = dni_alumno;
-    return aula;
+    -- Se selecciona el aula del curso del alumno de la tabla 'cursos' donde el DNI coincide.
+    select aula_curso into aula from cursos where dni_alumno_curso = dni_alumno;
+    return aula; -- Se retorna el aula obtenida.
 end//
-
 delimiter ;
 
--- obtener_anio_por_alumno_curso
+-- Función para obtener el año del curso del alumno dado su DNI.
 delimiter //
-
-create function obtener_anio_por_alumno_curso(dni_alumno bigint)
+create function obteneranioporalumnocurso(dni_alumno bigint)
 returns bigint
 begin
     declare anio bigint;
-    select anio_curso into anio from curso where dni_alumno_curso = dni_alumno;
-    return anio;
+    -- Se selecciona el año del curso del alumno de la tabla 'cursos' donde el DNI coincide.
+    select anio_curso into anio from cursos where dni_alumno_curso = dni_alumno;
+    return anio; -- Se retorna el año obtenido.
 end//
-
 delimiter ;
 
--- obtener_division_por_alumno_curso
+-- Función para obtener la división del curso del alumno dado su DNI.
 delimiter //
-
-create function obtener_division_por_alumno_curso(dni_alumno bigint)
+create function obtenerdivisionporalumnocurso(dni_alumno bigint)
 returns bigint
 begin
     declare division bigint;
-    select division_curso into division from curso where dni_alumno_curso = dni_alumno;
-    return division;
+    -- Se selecciona la división del curso del alumno de la tabla 'cursos' donde el DNI coincide.
+    select division_curso into division from cursos where dni_alumno_curso = dni_alumno;
+    return division; -- Se retorna la división obtenida.
 end//
-
 delimiter ;
 
--- obtener_preceptor_por_alumno_curso
+-- Función para obtener el nombre del preceptor del curso del alumno dado su DNI.
 delimiter //
-
-create function obtener_preceptor_por_alumno_curso(dni_alumno bigint)
+create function obtenerpreceptorporalumnocurso(dni_alumno bigint)
 returns varchar(100)
 begin
     declare nombre_preceptor varchar(100);
-    select preceptor_curso into nombre_preceptor from curso where dni_alumno_curso = dni_alumno;
-    return nombre_preceptor;
+    -- Se selecciona el nombre del preceptor del curso del alumno de la tabla 'cursos' donde el DNI coincide.
+    select preceptor_curso into nombre_preceptor from cursos where dni_alumno_curso = dni_alumno;
+    return nombre_preceptor; -- Se retorna el nombre del preceptor obtenido.
 end//
-
 delimiter ;
 
 
---------------------------------Tabla Faltas--------------------------------
 
--- codigo_falta
-drop function if exists obtener_codigo_falta;
+-------------------------------- Tabla Faltas --------------------------------
 
+-- Función para obtener el código de falta a partir del DNI del alumno.
+drop function if exists obtenercodigofalta;
 delimiter //
-
-create function obtener_codigo_falta(dni_alumno bigint)
+create function obtenercodigofalta(dni_alumno bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
+    -- Se selecciona el código de falta de la tabla 'faltas' donde el DNI del alumno coincide.
     select codigo_falta into codigo_falta from faltas where dni_alumno_falta = dni_alumno;
-    return codigo_falta;
+    return codigo_falta; -- Se retorna el código de falta obtenido.
 end//
-
 delimiter ;
 
--- dni_alumno_falta
+-- Función para obtener el DNI del alumno a partir del código de falta.
 delimiter //
-
-create function obtener_dni_alumno_por_falta(codigo_falta bigint)
+create function obtenerdnialumnoporfalta(codigo_falta bigint)
 returns bigint
 begin
     declare dni_alumno bigint;
+    -- Se selecciona el DNI del alumno de la tabla 'faltas' donde el código de falta coincide.
     select dni_alumno_falta into dni_alumno from faltas where codigo_falta = codigo_falta;
-    return dni_alumno;
+    return dni_alumno; -- Se retorna el DNI obtenido.
 end//
-
 delimiter ;
 
--- alumno_falta
+-- Función para obtener el nombre del alumno a partir del código de falta.
 delimiter //
-
-create function obtener_nombre_alumno_por_falta(codigo_falta bigint)
+create function obtenernombrealumnoporfalta(codigo_falta bigint)
 returns varchar(100)
 begin
     declare nombre_alumno varchar(100);
+    -- Se selecciona el nombre del alumno de la tabla 'faltas' donde el código de falta coincide.
     select alumno_falta into nombre_alumno from faltas where codigo_falta = codigo_falta;
-    return nombre_alumno;
+    return nombre_alumno; -- Se retorna el nombre del alumno obtenido.
 end//
-
 delimiter ;
 
--- fecha_falta
+-- Función para obtener la fecha de la falta a partir del código de falta.
 delimiter //
-
-create function obtener_fecha_falta(codigo_falta bigint)
+create function obtenerfechafalta(codigo_falta bigint)
 returns date
 begin
     declare fecha_falta date;
+    -- Se selecciona la fecha de la falta de la tabla 'faltas' donde el código de falta coincide.
     select fecha_falta into fecha_falta from faltas where codigo_falta = codigo_falta;
-    return fecha_falta;
+    return fecha_falta; -- Se retorna la fecha de falta obtenida.
 end//
-
 delimiter ;
 
--- motivo_falta
+-- Función para obtener el motivo de la falta a partir del código de falta.
 delimiter //
-
-create function obtener_motivo_falta(codigo_falta bigint)
+create function obtenermotivofalta(codigo_falta bigint)
 returns varchar(100)
 begin
     declare motivo varchar(100);
+    -- Se selecciona el motivo de la falta de la tabla 'faltas' donde el código de falta coincide.
     select motivo_falta into motivo from faltas where codigo_falta = codigo_falta;
-    return motivo;
+    return motivo; -- Se retorna el motivo de la falta obtenido.
 end//
-
 delimiter ;
 
--- descripcion_falta
+-- Función para obtener la descripción de la falta a partir del código de falta.
 delimiter //
-
-create function obtener_descripcion_falta(codigo_falta bigint)
+create function obtenerdescripcionfalta(codigo_falta bigint)
 returns text
 begin
     declare descripcion text;
+    -- Se selecciona la descripción de la falta de la tabla 'faltas' donde el código de falta coincide.
     select descripcion_falta into descripcion from faltas where codigo_falta = codigo_falta;
-    return descripcion;
+    return descripcion; -- Se retorna la descripción de la falta obtenida.
 end//
-
 delimiter ;
 
+-------------------------------- Tabla Solicitud Sanción --------------------------------
 
-
---------------------------------Tabla solicitud_sancion--------------------------------
-
--- codigo_falta_solicitud
+-- Función para obtener el código de falta a partir del código de solicitud.
 delimiter //
-
-create function obtener_codigo_falta_por_solicitud(codigo_solicitud bigint)
+create function obtenercodigofaltaporsolicitud(codigo_solicitud bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
+    -- Se selecciona el código de falta de la tabla 'solicitud_sancion' donde el código de solicitud coincide.
     select codigo_falta_solicitud into codigo_falta from solicitud_sancion where codigo_falta_solicitud = codigo_solicitud;
-    return codigo_falta;
+    return codigo_falta; -- Se retorna el código de falta obtenido.
 end//
-
 delimiter ;
 
--- nomdocente_solicitud
+-- Función para obtener el nombre del docente a partir del código de solicitud.
 delimiter //
-
-create function obtener_nom_docente_por_solicitud(codigo_solicitud bigint)
+create function obtenernomdocenteporsolicitud(codigo_solicitud bigint)
 returns varchar(100)
 begin
     declare nombre_docente varchar(100);
+    -- Se selecciona el nombre del docente de la tabla 'solicitud_sancion' donde el código de solicitud coincide.
     select nomdocente_solicitud into nombre_docente from solicitud_sancion where codigo_falta_solicitud = codigo_solicitud;
-    return nombre_docente;
+    return nombre_docente; -- Se retorna el nombre del docente obtenido.
 end//
-
 delimiter ;
 
--- cargo_solicitud
+-- Función para obtener el cargo del docente a partir del código de solicitud.
 delimiter //
-
-create function obtener_cargo_docente_por_solicitud(codigo_solicitud bigint)
+create function obtenercargodocenteporsolicitud(codigo_solicitud bigint)
 returns varchar(100)
 begin
     declare cargo_docente varchar(100);
+    -- Se selecciona el cargo del docente de la tabla 'solicitud_sancion' donde el código de solicitud coincide.
     select cargo_solicitud into cargo_docente from solicitud_sancion where codigo_falta_solicitud = codigo_solicitud;
-    return cargo_docente;
+    return cargo_docente; -- Se retorna el cargo del docente obtenido.
 end//
-
 delimiter ;
 
--- fecha_solicitud
+-- Función para obtener la fecha de la solicitud a partir del código de solicitud.
 delimiter //
-
-create function obtener_fecha_solicitud(codigo_solicitud bigint)
+create function obtenerfechasolicitud(codigo_solicitud bigint)
 returns date
 begin
     declare fecha_solicitud date;
+    -- Se selecciona la fecha de la solicitud de la tabla 'solicitud_sancion' donde el código de solicitud coincide.
     select fecha_solicitud into fecha_solicitud from solicitud_sancion where codigo_falta_solicitud = codigo_solicitud;
-    return fecha_solicitud;
+    return fecha_solicitud; -- Se retorna la fecha de la solicitud obtenida.
 end//
-
 delimiter ;
 
+-------------------------------- Tabla Observaciones --------------------------------
 
---------------------------------Tabla observaciones--------------------------------
-
--- codigo_falta_observaciones
-
+-- Función para obtener el código de falta a partir del código de observaciones.
 delimiter //
-
-create function obtener_codigo_falta_por_observaciones(codigo_observaciones bigint)
+create function obtenercodigofaltaporobservaciones(codigo_observaciones bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
+    -- Se selecciona el código de falta de la tabla 'observaciones' donde el código de observaciones coincide.
     select codigo_falta_observaciones into codigo_falta from observaciones where codigo_falta_observaciones = codigo_observaciones;
-    return codigo_falta;
+    return codigo_falta; -- Se retorna el código de falta obtenido.
 end//
-
 delimiter ;
 
--- observacion_observaciones
-
+-- Función para obtener la observación a partir del código de observaciones.
 delimiter //
-
-create function obtener_observacion_por_codigo(codigo_observaciones bigint)
+create function obtenerobservacionporcodigo(codigo_observaciones bigint)
 returns text
 begin
     declare observacion text;
+    -- Se selecciona la observación de la tabla 'observaciones' donde el código de observaciones coincide.
     select observacion_observaciones into observacion from observaciones where codigo_falta_observaciones = codigo_observaciones;
-    return observacion;
+    return observacion; -- Se retorna la observación obtenida.
 end//
-
 delimiter ;
 
--- codigo_falta_grado
-
+-- Función para obtener el código de falta a partir del código de grado.
 delimiter //
-
-create function obtener_codigo_falta_por_grado(codigo_grado bigint)
+create function obtenercodigo_faltaporgado(codigo_grado bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
+    -- Se selecciona el código de falta de la tabla 'grados' donde el código de grado coincide.
     select codigo_falta_grado into codigo_falta from grados where codigo_falta_grado = codigo_grado;
-    return codigo_falta;
-end//
-
+    return codigo_falta; -- Se retorna el código de falta obtenido.
+end //
 delimiter ;
 
--- instancia_grado
-
+-- Función para obtener la instancia de grado a partir del código de grado.
 delimiter //
-
-create function obtener_instancia_grado(codigo_grado bigint)
+create function obtenerinstanciagrado(codigo_grado bigint)
 returns varchar(100)
 begin
     declare instancia_grado varchar(100);
+    -- Se selecciona la instancia de grado de la tabla 'grados' donde el código de grado coincide.
     select instancia_grado into instancia_grado from grados where codigo_falta_grado = codigo_grado;
-    return instancia_grado;
-end//
-
+    return instancia_grado; -- Se retorna la instancia de grado obtenida.
+end //
 delimiter ;
 
--- consideracion_alternativa_grado
-
+-- Función para obtener la consideración alternativa del grado a partir del código de grado.
 delimiter //
-
-create function obtener_consideracion_alternativa_grado(codigo_grado bigint)
+create function obtenerconsideracionalternativagrado(codigo_grado bigint)
 returns varchar(100)
 begin
     declare consideracion_alternativa varchar(100);
+    -- Se selecciona la consideración alternativa de grado de la tabla 'grados' donde el código de grado coincide.
     select consideracion_alternativa_grado into consideracion_alternativa from grados where codigo_falta_grado = codigo_grado;
-    return consideracion_alternativa;
-end//
-
+    return consideracion_alternativa; -- Se retorna la consideración alternativa obtenida.
+end //
 delimiter ;
 
---------------------------------tabla notificaion_tutores--------------------------------
 
--- codigo_falta_notificacion
+-------------------------------- Tabla Notificación Tutores --------------------------------
 
+-- Función para obtener el código de falta a partir del código de notificación.
 delimiter //
-
-create function obtener_codigo_falta_por_notificacion(codigo_notificacion bigint)
+create function obtenercodigofaltapornotificacion(codigo_notificacion bigint)
 returns bigint
 begin
     declare codigo_falta bigint;
-    select codigo_falta_notificacion into codigo_falta from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
-    return codigo_falta;
+    -- Se selecciona el código de falta de la tabla 'notificaion_tutores' donde el código de notificación coincide.
+    select codigo_falta_notificacion into codigo_falta from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    return codigo_falta; -- Se retorna el código de falta obtenido.
 end//
-
 delimiter ;
 
--- fecha_notificacion_a
-
+-- Función para obtener la fecha de notificación a partir del código de notificación.
 delimiter //
-
-create function obtener_fecha_notificacion_por_codigo(codigo_notificacion bigint)
+create function obtenerfechanotificacionporcodigo(codigo_notificacion bigint)
 returns date
 begin
     declare fecha_notificacion date;
-    select fecha_notificacion_a into fecha_notificacion from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
-    return fecha_notificacion;
+    -- Se selecciona la fecha de notificación de la tabla 'notificaion_tutores' donde el código de notificación coincide.
+    select fecha_notificacion_a into fecha_notificacion from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    return fecha_notificacion; -- Se retorna la fecha de notificación obtenida.
 end//
-
 delimiter ;
 
--- dni_padre_notificacion
-
+-- Función para obtener el DNI del padre a partir del código de notificación.
 delimiter //
-
-create function obtener_dni_padre_por_notificacion(codigo_notificacion bigint)
+create function obtenerdnipadrepornotificacion(codigo_notificacion bigint)
 returns bigint
 begin
-    declare dni_padre bigint;
-    select dni_padre_notificacion into dni_padre from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
-    return dni_padre;
+    declare dni_tutor bigint;
+    -- Se selecciona el DNI del tutor de la tabla 'notificaion_tutores' donde el código de notificación coincide.
+    select dni_tutor_notificacion into dni_tutor from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    return dni_tutor; -- Se retorna el DNI del tutor obtenido.
 end//
-
 delimiter ;
 
--- nombre_padre_notificacion
-
+-- Función para obtener el nombre del padre a partir del código de notificación.
 delimiter //
-
-create function obtener_nombre_padre_por_notificacion(codigo_notificacion bigint)
+create function obtenenombrepadrepornotificacion(codigo_notificacion bigint)
 returns varchar(100)
 begin
-    declare nombre_padre varchar(100);
-    select nombre_padre_notificacion into nombre_padre from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
-    return nombre_padre;
+    declare nombre_tutor varchar(100);
+    -- Se selecciona el nombre del tutor de la tabla 'notificaion_tutores' donde el código de notificación coincide.
+    select nombre_tutor into nombre_tutor from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    return nombre_tutor; -- Se retorna el nombre del tutor obtenido.
 end//
-
 delimiter ;
 
--- fecha_notificacion_pm
-
+-- Función para obtener la fecha de notificación para padres a partir del código de notificación.
 delimiter //
-
-create function obtener_fecha_notificacion_padres(codigo_notificacion bigint)
+create function obtenerfechanotificacionpadres(codigo_notificacion bigint)
 returns date
 begin
     declare fecha_notificacion date;
-    select fecha_notificacion_pm into fecha_notificacion from notificacion_padres where codigo_falta_notificacion = codigo_notificacion;
-    return fecha_notificacion;
+    -- Se selecciona la fecha de notificación para padres de la tabla 'notificaion_tutores' donde el código de notificación coincide.
+    select fecha_notificacion_pm into fecha_notificacion from notificaion_tutores where codigo_falta_notificacion = codigo_notificacion;
+    return fecha_notificacion; -- Se retorna la fecha de notificación para padres obtenida.
 end//
-
 delimiter ;
